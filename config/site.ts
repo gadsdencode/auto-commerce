@@ -6,24 +6,17 @@ export const siteConfig = {
 	navItems: [
 		{
 			label: "Home",
-			href: "/",
+			href: "/Home",
 		},
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Products",
+      href: "/Products",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: "Contact",
+      href: "/Contact",
     }
+
 	],
 	navMenuItems: [
 		{
