@@ -7,10 +7,33 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
+import {
+  Collapse,
+  Dropdown,
+  Ripple,
+  initTE,
+} from "tw-elements";
 
+import Image from "next/image";
+import { useEffect, useState } from 'react';
+import dynamic from "next/dynamic";
+
+const DynamicComponent = dynamic(() => import("../pages/twelementscomponent"), {
+  ssr: false,
+});
 export default function IndexPage() {
+
+const [isMenuVisible, setMenuVisibility] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuVisibility(!isMenuVisible);
+  };
+
 	return (
 		<DefaultLayout>
+      <>
+      <DynamicComponent />
+    </>
 			<>
   <meta charSet="utf-8" />
   <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -36,15 +59,13 @@ export default function IndexPage() {
   data-te-navbar-ref=""
 >
   <div className="px-6">
-    <button
-      className="leading-nonetransition-shadow border-0 bg-transparent py-3 text-xl duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:hidden"
-      type="button"
-      data-te-collapse-init=""
-      data-te-target="#navbarSupportedContentU"
-      aria-controls="navbarSupportedContentU"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+  <button
+        className="leading-nonetransition-shadow border-0 bg-transparent py-3 text-xl duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:hidden"
+        type="button"
+        onClick={toggleMenu}
+        aria-expanded={isMenuVisible}
+        aria-label="Toggle navigation"
+      >
       <span className="[&>svg]:w-8">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,10 +84,9 @@ export default function IndexPage() {
       </span>
     </button>
     <div
-      className="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
-      id="navbarSupportedContentU"
-      data-te-collapse-item=""
-    >
+        className={`!visible ${isMenuVisible ? 'flex' : 'hidden'} flex-grow basis-[100%] items-center lg:!flex lg:basis-auto`}
+        id="navbarSupportedContentU"
+      >
       <ul className="mr-auto flex flex-row" data-te-navbar-nav-ref="">
         <li data-te-nav-item-ref="">
           <a
@@ -122,10 +142,12 @@ export default function IndexPage() {
                     data-te-ripple-init=""
                     data-te-ripple-color="light"
                   >
-                    <img
+                    <Image
                       src="https://tecdn.b-cdn.net/img/new/fluid/city/113.webp"
                       className="w-full rounded-md shadow-lg dark:shadow-black/10"
                       alt="Louvre"
+                      width={3}
+                      height={3}
                     />
                     <a href="#!">
                       <div
@@ -173,10 +195,12 @@ export default function IndexPage() {
                     data-te-ripple-init=""
                     data-te-ripple-color="light"
                   >
-                    <img
+                    <Image
                       src="https://tecdn.b-cdn.net/img/new/fluid/city/011.webp"
                       className="w-full rounded-md shadow-lg dark:shadow-black/10"
                       alt="Louvre"
+                      width={3}
+                      height={3}
                     />
                     <a href="#!">
                       <div
@@ -233,10 +257,12 @@ export default function IndexPage() {
                     data-te-ripple-init=""
                     data-te-ripple-color="light"
                   >
-                    <img
+                    <Image
                       src="https://tecdn.b-cdn.net/img/new/fluid/city/018.webp"
                       className="w-full rounded-md shadow-lg dark:shadow-black/10"
                       alt="Louvre"
+                      width={3}
+                      height={3}
                     />
                     <a href="#!">
                       <div
